@@ -9,27 +9,28 @@ As seen in Umano ([http://umanoapp.com](http://umanoapp.com)):
 
 ### Usage
 
-To use the layout, simply include `com.sothree.slidinguppaneldemo.SlidingUpPanelLayout` as the Root element in your activity Layout. Make sure that it has two children. The first child is your main layout. The second child is your layout for the sliding up panel. Both children should have width and height set to `match_parent`. For more information, please refer to the sample code.
+To use the layout, simply include `com.sothree.slidinguppanel.SlidingUpPanelLayout` as the Root element in your activity Layout. Layout must have `layout_gravity` set to either `top` or `bottom`. Make sure that it has two children. The first child is your main layout. The second child is your layout for the sliding up panel. Both children should have width and height set to `match_parent`. For more information, please refer to the sample code.
 ```xml
-    <com.sothree.slidinguppanel.SlidingUpPanelLayout
-        android:id="@+id/sliding_layout"
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
+    android:id="@+id/sliding_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom">
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Main Content"
+        android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Main Content"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center|top"
-            android:text="The Awesome Sliding Up Panel"
-            android:textSize="16sp" />
-    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|top"
+        android:text="The Awesome Sliding Up Panel"
+        android:textSize="16sp" />
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>
 ```
 For smooth interaction with the ActionBar, make sure that `windowActionBarOverlay` is set to `true` in your styles:
 ```xml
@@ -49,6 +50,10 @@ You can disable sliding by using `setSlidingEnabled` method. This can be useful 
 
 You can set a anchor point in the middle of the screen using `setAnchorPoint` to allow an intermediate expanded state for the panel (similar to Google Maps).
 
+You can set a `PanelSlideListener` to monitor events about sliding panes.
+
+You can also make the panel slide from the top by changing the `layout_gravity` attribute of the layout to `top`.
+
 ### Implementation
 
 This code is heavily based on the opened-sourced [SlidingPaneLayout](http://developer.android.com/reference/android/support/v4/widget/SlidingPaneLayout.html) component from the r13 of the Android Support Library. Thanks Android team!
@@ -57,7 +62,28 @@ This code is heavily based on the opened-sourced [SlidingPaneLayout](http://deve
 
 Tested on Android 2.2+
 
-### Other Contributors 
+If you are using Android studio, make sure to add the following section to the root `build.gradle` file:
+
+```
+allprojects {
+
+  buildscript {
+    repositories {
+      mavenCentral()
+    }
+  }
+
+  dependencies {
+    repositories {
+      mavenCentral()
+    }
+  }
+}
+```
+
+### Other Contributors
+
+Jan 21, 14 - ChaYoung You ([@yous](https://github.com/yous)) - Slide from the top support
 
 Aug 20, 13 - ([@gipi](https://github.com/gipi)) - Android Studio Support
 
